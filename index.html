@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080b14">
+  <title>CineVerse — Discover Your Next Favorite</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="CineVerse home"><span class="brand-mark">C</span><span>Cine<span>Verse By Hussain.</span></span></a>
+    <nav class="desktop-nav" aria-label="Main navigation">
+      <a class="nav-link active" href="#home">Home</a><a class="nav-link" href="#trending">Trending</a><a class="nav-link" href="#collection">My List</a>
+    </nav>
+    <div class="header-actions">
+      <label class="search-box"><span aria-hidden="true">⌕</span><input id="searchInput" type="search" placeholder="Search movies..." aria-label="Search movies"><kbd>/</kbd></label>
+      <button class="avatar-button" id="openAuth" aria-label="Sign in">👤</button>
+      <button class="menu-button" id="menuToggle" aria-label="Open menu">☰</button>
+    </div>
+  </header>
+
+  <main id="home">
+    <section class="hero">
+      <div class="hero-content">
+        <span class="eyebrow"><span class="live-dot"></span> YOUR NEXT MOVIE NIGHT STARTS HERE</span>
+        <h1>Stories that<br>stay with <span>you.</span></h1>
+        <p>Explore unforgettable worlds, discover hidden gems, and build a watchlist made for your taste.</p>
+        <div class="hero-actions"><a class="btn btn-primary" href="#trending">Explore movies <span>↗</span></a><button class="btn btn-ghost" id="surpriseBtn"><span>✦</span> Surprise me</button></div>
+        <div class="hero-stats"><div><strong>1,200+</strong><small>Titles to discover</small></div><div class="stat-divider"></div><div><strong>Made for you</strong><small>Your personal watchlist</small></div></div>
+      </div>
+      <div class="hero-art" aria-label="Featured movie artwork">
+        <div class="hero-orbit orbit-a"></div><div class="hero-orbit orbit-b"></div>
+        <div class="hero-poster">
+          <img src="https://image.tmdb.org/t/p/w780/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg" alt="Oppenheimer movie poster" onerror="this.style.display='none'">
+          <div class="poster-fallback"><span>FEATURED FILM</span><strong>THE<br>UNKNOWN</strong><small>EVERY STORY HAS A SECRET</small></div>
+          <div class="poster-shade"></div><div class="poster-caption"><span class="pill">EDITOR'S PICK</span><h3>Beyond the ordinary.</h3><p>One story can change everything.</p></div>
+        </div>
+        <div class="floating-card rating-card"><span class="rating-star">★</span><div><strong>8.9 <small>/ 10</small></strong><small>Community rating</small></div></div>
+        <div class="floating-card genre-card"><span>◈</span><div><strong>Curated for you</strong><small>Fresh picks every day</small></div></div>
+      </div>
+    </section>
+
+    <section class="content-section" id="trending">
+      <div class="section-heading"><div><span class="section-kicker">THE GOOD STUFF</span><h2>Trending <span>now</span></h2></div><div class="filter-row" id="filterRow"><button class="filter-chip selected" data-filter="All">All titles</button><button class="filter-chip" data-filter="Action">Action</button><button class="filter-chip" data-filter="Drama">Drama</button><button class="filter-chip" data-filter="Sci-Fi">Sci-Fi</button><button class="filter-chip" data-filter="Animation">Animation</button></div></div>
+      <div class="movie-grid" id="movieGrid" aria-live="polite"></div>
+      <p class="empty-state" id="emptyState" hidden>No titles found. Try another search or category.</p>
+    </section>
+
+    <section class="watchlist-section" id="collection">
+      <div class="watchlist-copy"><span class="section-kicker">YOUR PERSONAL COLLECTION</span><h2>Keep your next<br><span>favorite close.</span></h2><p>Sign in to save movies to your watchlist and keep your picks synced on this device.</p><button class="btn btn-primary" id="watchlistSignIn">Create your free account <span>↗</span></button></div>
+      <div class="watchlist-visual"><div class="stack-card stack-back"></div><div class="stack-card stack-mid"></div><div class="stack-card stack-front"><span>YOUR WATCHLIST</span><strong>Good stories.<br>Zero forgetting.</strong><div class="stack-mini-row"><i>✦</i><i>▶</i><i>★</i><small>Made by you</small></div></div></div>
+    </section>
+    <footer><a class="brand footer-brand" href="#"><span class="brand-mark">C</span><span>Cine<span>Verse</span></span></a><p>Find the story you didn't know you needed.</p><small>Movie metadata and images are for discovery purposes. Demo catalogue.</small></footer>
+  </main>
+
+  <div class="modal-backdrop" id="authModal" hidden>
+    <section class="auth-modal" role="dialog" aria-modal="true" aria-labelledby="authTitle">
+      <button class="modal-close" id="closeAuth" aria-label="Close">×</button>
+      <div class="auth-logo brand-mark">C</div><span class="section-kicker">WELCOME TO CINEVERSE</span><h2 id="authTitle">Your movie world awaits.</h2><p class="auth-intro">Sign in or create an account to save your favorite titles.</p>
+      <div class="auth-tabs"><button class="auth-tab active" data-mode="login">Sign in</button><button class="auth-tab" data-mode="signup">Create account</button></div>
+      <form id="authForm">
+        <label class="field-label" for="authEmail">Email address</label><input class="form-input" id="authEmail" type="email" autocomplete="email" placeholder="you@example.com" required>
+        <label class="field-label" for="authPassword">Password</label><input class="form-input" id="authPassword" type="password" autocomplete="current-password" minlength="6" placeholder="At least 6 characters" required>
+        <p class="form-message" id="authMessage" role="status"></p>
+        <button class="btn btn-primary submit-btn" type="submit" id="authSubmit">Sign in <span>↗</span></button>
+      </form>
+      <small class="auth-note">Account storage is local in this starter. Connect Firebase to enable secure accounts and cloud sync.</small>
+    </section>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script type="module" src="script.js"></script>
+</body>
+</html>
