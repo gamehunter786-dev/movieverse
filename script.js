@@ -21,7 +21,7 @@ import {
 // ==========================================
 
 const firebaseConfig = {
-  apiKey: "YOUR_FIREBASE_API_KEY",
+  apiKey: "AIzaSyAGIr1zZ_yRV_GZn_C84BIRXhXqFYeKHFo",
   authDomain: "e-commerce-a5510.firebaseapp.com",
   projectId: "e-commerce-a5510",
   storageBucket: "e-commerce-a5510.firebasestorage.app",
@@ -606,3 +606,4 @@ onAuthStateChanged(auth, async user => {
 // Initial display: render immediately while Firebase checks sign-in state.
 renderMovies();
 updateAccountButton(null);
+
