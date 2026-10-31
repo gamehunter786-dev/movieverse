@@ -21,7 +21,7 @@ import {
 // ==========================================
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAGIr1zZ_yRV_GZn_C84BIRXhXqFYeKHFo",
+  apiKey: "YOUR_FIREBASE_API_KEY",
   authDomain: "e-commerce-a5510.firebaseapp.com",
   projectId: "e-commerce-a5510",
   storageBucket: "e-commerce-a5510.firebasestorage.app",
@@ -360,8 +360,9 @@ function setAuthMode(mode) {
   showAuthMessage("");
 }
 
-const accountButton =
-  $("#accountBtn") || $("#accountButton") || $("#loginBtn");
+
+const accountButton = $("#openAuth");
+const watchlistSignIn = $("#watchlistSignIn");
 
 if (accountButton) {
   accountButton.addEventListener("click", () => {
@@ -374,6 +375,13 @@ if (accountButton) {
     }
   });
 }
+
+if (watchlistSignIn) {
+  watchlistSignIn.addEventListener("click", () => {
+    openAuthModal("signup");
+  });
+}
+
 
 const closeAuthButton =
   $("#authClose") || $("#closeAuth") || $("#modalClose");
@@ -390,13 +398,21 @@ if (authModal) {
   });
 }
 
-const authSwitch = $("#authSwitch");
 
-if (authSwitch) {
-  authSwitch.addEventListener("click", () => {
-    setAuthMode(authMode === "signin" ? "signup" : "signin");
+$$(".auth-tab").forEach(tab => {
+  tab.addEventListener("click", () => {
+    const mode = tab.dataset.mode === "signup"
+      ? "signup"
+      : "signin";
+
+    $$(".auth-tab").forEach(item => {
+      item.classList.toggle("active", item === tab);
+    });
+
+    setAuthMode(mode);
   });
-}
+});
+
 
 // ==========================================
 // 8. FIREBASE SIGN-UP AND SIGN-IN
@@ -476,20 +492,20 @@ if (authForm) {
 // 9. UPDATE ACCOUNT BUTTON
 // ==========================================
 
+
 function updateAccountButton(user) {
-  const button =
-    $("#accountBtn") || $("#accountButton") || $("#loginBtn");
+  const button = $("#openAuth");
 
   if (!button) return;
 
-  if (user) {
-    button.textContent = "Sign Out";
-    button.title = user.email || "Signed in";
-  } else {
-    button.textContent = "Sign In";
-    button.title = "Sign in to CineVerse";
-  }
+  button.textContent = user ? "↪" : "👤";
+  button.setAttribute(
+    "aria-label",
+    user ? "Sign out" : "Sign in"
+  );
+  button.title = user?.email || "Sign in to CineVerse";
 }
+
 
 // ==========================================
 // 10. SURPRISE ME BUTTON
